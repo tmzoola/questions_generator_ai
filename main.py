@@ -237,7 +237,8 @@ async def generate_api_questions(question: str, correct: str, user: str):
         temperature=0.7,
         max_tokens=400,
         messages=[
-            {"role": "system", "content": 'You are an assistant, that checks answers and based on wrong ones generates educating texts on easy to understand language. Not longer than 5 sentences.'},
+            {"role": "system", "content": "Siz javoblarni tekshiradigan va noto'g'ri javoblar asosida tushunarli tilda foydalanuvchiga tushuntirib va yetkazib beradigan matnlar yaratadigan yordamchisiz. 5 ta jumladan oshmasligi kerak."},
+            #{"role": "system", "content": 'You are an assistant, that checks answers and based on wrong ones generates educating texts on easy to understand language. Not longer than 5 sentences.'},
             {"role": "user", "content": questions_and_answers_string} #Replace the hard-coded text with your prompt, containing wrong answers and task to explain correct solutions on easy to understand language
         ]
     )
@@ -284,7 +285,7 @@ def submit_synthesis(gptresponse):
         'description': DESCRIPTION,
         "textType": "PlainText",
         'synthesisConfig': {
-            "voice": "en-US-JennyNeural",
+            "voice": "uz-UZ-MadinaNeural",
         },
         'customVoices': {
         },
