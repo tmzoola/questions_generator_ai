@@ -183,7 +183,7 @@ async def generate_api_questions(text: str, question_type: str, question_count: 
                     data["question"] += option
 
                 if option[1] == ')':
-                    data["options"][option[:1]] = option
+                    data["options"][option[:1]] = option[3:]
 
             result.append(data)
             id+=1
@@ -192,6 +192,26 @@ async def generate_api_questions(text: str, question_type: str, question_count: 
         format_value = 1
     elif question_type == "true false":
         parsed_questions = parse_true_false_questions(generated_questions)
+
+        result = []
+        id = 1
+        for question in parsed_questions:
+            data = {
+                "question_id": id,
+                "question": question['question'],
+                "options": {
+                    "a": "True",
+                    "b": "False",
+                },
+                "answer": question["answer"]
+            }
+            result.append(data)
+            id += 1
+
+        parsed_questions = result
+
+
+
         format_value = 2
     elif question_type == "short answer":
         parsed_questions = parse_short_answer_questions(generated_questions)
